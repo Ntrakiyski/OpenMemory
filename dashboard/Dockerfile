@@ -18,9 +18,9 @@ FROM node:20-alpine AS production
 
 WORKDIR /app
 
-# Install only production dependencies
+# Install ALL dependencies (keep devDependencies for next.config.ts)
 COPY package*.json ./
-RUN npm install --omit=dev
+RUN npm install
 
 # Copy built assets from builder
 COPY --from=builder /app/.next ./.next
